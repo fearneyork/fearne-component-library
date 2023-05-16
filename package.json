@@ -22,6 +22,7 @@
     "@storybook/preact": "^7.0.12",
     "@storybook/preact-vite": "^7.0.12",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "htm": "^3.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.0.12",
