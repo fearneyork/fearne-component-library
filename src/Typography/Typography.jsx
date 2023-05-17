@@ -1,7 +1,16 @@
 import styled from "styled-components";
 
 export const Heading1 = styled.h1`
-  font-size: 1.5em;
   text-align: center;
-  color: palevioletred;
+  color: red;
+`;
+
+export const Heading2 = styled.h2`
+  text-align: center;
+  color: green;
+`;
+
+export const Body = styled.p`
+  text-align: center;
+  color: blue;
 `;

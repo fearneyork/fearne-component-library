@@ -1,4 +1,4 @@
-import { Heading1 } from "../../Typography/Typography.jsx";
+import { Heading1, Heading2, Body } from "../../Typography/Typography.jsx";
 
 export default {
   title: 'Typography',
@@ -9,11 +9,21 @@ export default {
 
 export const Title = {
   args: {
-    text: 'This is paragraph text',
+    text: 'This is h1 text',
   },
-  render: ({text}) => <Heading1>{text}</Heading1>
+  render: ({text}) => <Heading1>{text}</Heading1>,
 };
 
-export const SecTitle = {
-render: () => <Heading1>This is text</Heading1>
+export const Heading = {
+    args: {
+    text: 'This is h2 text',
+  },
+  render: ({text}) => <Heading2>{text}</Heading2>,
+};
+
+export const BodyText = {
+    args: {
+    text: 'This is body text',
+  },
+  render: ({text}) => <Body>{text}</Body>,
 };
