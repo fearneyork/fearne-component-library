@@ -1,4 +1,4 @@
-import { GitHubWidget } from "../../Widgets/GitHub/GitHubWidget.jsx";
+import { SpotifyWidget } from "../../Widgets/Spotify/SpotifyWidget";
 
 export default {
   title: 'Widgets',
@@ -7,9 +7,9 @@ export default {
   },
 };
 
-export const GitHub = {
+export const Spotify = {
   args: {
     // text: 'This is h1 text',
   },
-  render: ({}) => <GitHubWidget />
+  render: ({}) => <SpotifyWidget />
 };
