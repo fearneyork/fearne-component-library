@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import SpotifyIcon from "../../assets/SpotifyIcon";
-import { Heading2 } from "../../Typography/Typography";
-
-const exampleArtwork = 'https://ksassets.timeincuk.net/wp/uploads/sites/55/2016/02/10fleetwoodMacRumours201010-2.jpg'
+import { Body, Heading2 } from "../../Typography/Typography";
 
 const Container = styled.div`
   display: flex;
@@ -21,32 +19,65 @@ const Container = styled.div`
 const TrackInfoContainer = styled.div`
   width: 233px;
   height: 75px;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.4);
   border: 0px;
   border-radius: 20px;
   margin-bottom: 10px;
-  box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.10);
+  justify-content: space-between;
+  flex-direction: column;
 `
 
-const TrackInfoHeading = styled(Heading2)`
+const TrackPlayState = styled(Heading2)`
   font-family: helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 0px;
   opacity: 100%;
+  color: rgba(0, 214, 76, 1);
+  margin: 0;
+  align-content: center;
+  `
+  
+  const TrackTitle = styled(Body)`
+  font-family: helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px 0px;
+  opacity: 100%;
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
+`
+
+const TrackSubtitle = styled(Body)`
+  font-family: helvetica;
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 100%;
+  color: rgb(255, 255, 255);
+  margin: 0;
 `
 
 const IconContainer = styled.div`
   flex-direction: row;
   align-self: end;
+  color: rgb(255, 255, 255);
   margin: 10px 10px 0px 0px;
 `
 
-export const SpotifyWidget = () => {
+export const SpotifyWidget = ({data}) => {
+  const {isCurrentlyPlaying, trackName, artistAndTrack, trackUrl } = data;
+  const TrackPlayStateText = isCurrentlyPlaying ? 'Currently Playing' : 'Recently Played';
+
   return (
-    <Container source={exampleArtwork}>
+    <Container source={trackUrl}>
       <IconContainer>
         <SpotifyIcon />
       </IconContainer>
       <TrackInfoContainer>
-        <TrackInfoHeading>Currently Playing</TrackInfoHeading>
+        <TrackPlayState>{TrackPlayStateText}</TrackPlayState>
+        <TrackTitle>{trackName}</TrackTitle>
+        <TrackSubtitle>{artistAndTrack}</TrackSubtitle>
       </TrackInfoContainer>
     </Container>
   )
