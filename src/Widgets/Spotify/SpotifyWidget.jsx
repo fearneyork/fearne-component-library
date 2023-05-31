@@ -1,8 +1,28 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import SpotifyIcon from "../../assets/SpotifyIcon";
 import { Body, Heading2 } from "../../Typography/Typography";
 
-const Container = styled.div`
+const animate = keyframes`
+  0% { background-position: 0% 75% };
+  50% { background-position: 100% 50% };
+  100% { background-position: 0% 75% };
+`
+
+const BorderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 260px;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  border-radius: 30px;
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 400% 400%;
+  animation: ${animate} 5s linear infinite;
+  `
+
+const ArtworkContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -70,15 +90,17 @@ export const SpotifyWidget = ({data}) => {
   const TrackPlayStateText = isCurrentlyPlaying ? 'Currently Playing' : 'Recently Played';
 
   return (
-    <Container source={trackUrl}>
-      <IconContainer>
-        <SpotifyIcon />
-      </IconContainer>
-      <TrackInfoContainer>
-        <TrackPlayState>{TrackPlayStateText}</TrackPlayState>
-        <TrackTitle>{trackName}</TrackTitle>
-        <TrackSubtitle>{artistAndTrack}</TrackSubtitle>
-      </TrackInfoContainer>
-    </Container>
+    <BorderContainer>
+      <ArtworkContainer source={trackUrl}>
+        <IconContainer>
+          <SpotifyIcon />
+        </IconContainer>
+        <TrackInfoContainer>
+          <TrackPlayState>{TrackPlayStateText}</TrackPlayState>
+          <TrackTitle>{trackName}</TrackTitle>
+          <TrackSubtitle>{artistAndTrack}</TrackSubtitle>
+        </TrackInfoContainer>
+      </ArtworkContainer>
+    </BorderContainer>
   )
 }
