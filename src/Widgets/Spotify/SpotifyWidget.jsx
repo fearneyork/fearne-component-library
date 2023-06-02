@@ -3,9 +3,12 @@ import SpotifyIcon from "../../assets/SpotifyIcon";
 import { Body, Heading2 } from "../../Typography/Typography";
 
 const animate = keyframes`
-  0% { background-position: 0% 75% };
-  50% { background-position: 100% 50% };
-  100% { background-position: 0% 75% };
+  0% { background-position: 50% 75% };
+  20% { background-position: 75% 75% };
+  40% { background-position: 75% 25% };
+  60% { background-position: 25% 25% };
+  80% { background-position: 25% 75% };
+  100% { background-position: 50% 75% };
 `
 
 const BorderContainer = styled.div`
@@ -17,9 +20,9 @@ const BorderContainer = styled.div`
   align-items: center;
   border: 0px;
   border-radius: 30px;
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background: radial-gradient(rgba(0,230,210,1), rgba(0,180,95,1), rgba(0,120,65,1), rgba(0,30,10,1), rgba(0,0,0,1));
   background-size: 400% 400%;
-  animation: ${animate} 5s linear infinite;
+  animation: ${animate} 7s ${(props) => props.animationPlayState} linear infinite;
   `
 
 const ArtworkContainer = styled.div`
@@ -75,7 +78,10 @@ const TrackSubtitle = styled(Body)`
   font-weight: 500;
   opacity: 100%;
   color: rgb(255, 255, 255);
-  margin: 0;
+  margin: 0px 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const IconContainer = styled.div`
@@ -88,9 +94,10 @@ const IconContainer = styled.div`
 export const SpotifyWidget = ({data}) => {
   const {isCurrentlyPlaying, trackName, artistAndTrack, trackUrl } = data;
   const TrackPlayStateText = isCurrentlyPlaying ? 'Currently Playing' : 'Recently Played';
+  const animationPlayState = isCurrentlyPlaying ? 'running' : 'paused';
 
   return (
-    <BorderContainer>
+    <BorderContainer animationPlayState={animationPlayState}>
       <ArtworkContainer source={trackUrl}>
         <IconContainer>
           <SpotifyIcon />
@@ -98,7 +105,7 @@ export const SpotifyWidget = ({data}) => {
         <TrackInfoContainer>
           <TrackPlayState>{TrackPlayStateText}</TrackPlayState>
           <TrackTitle>{trackName}</TrackTitle>
-          <TrackSubtitle>{artistAndTrack}</TrackSubtitle>
+          <TrackSubtitle numberOfLines={1}>{artistAndTrack}</TrackSubtitle>
         </TrackInfoContainer>
       </ArtworkContainer>
     </BorderContainer>
