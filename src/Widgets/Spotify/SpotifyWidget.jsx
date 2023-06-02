@@ -22,7 +22,7 @@ const BorderContainer = styled.div`
   border-radius: 30px;
   background: radial-gradient(rgba(0,230,210,1), rgba(0,180,95,1), rgba(0,120,65,1), rgba(0,30,10,1), rgba(0,0,0,1));
   background-size: 400% 400%;
-  animation: ${animate} 7s ${(props) => props.animationPlayState} linear infinite;
+  animation: ${animate} 7s ${(props) => props.animationPlayState} linear infinite reverse;
   `
 
 const ArtworkContainer = styled.div`
@@ -91,8 +91,8 @@ const IconContainer = styled.div`
   margin: 10px 10px 0px 0px;
 `
 
-export const SpotifyWidget = ({data}) => {
-  const {isCurrentlyPlaying, trackName, artistAndTrack, trackUrl } = data;
+export const SpotifyWidget = ({isCurrentlyPlaying, trackName, artistAndTrack, trackUrl}) => {
+  // const { isCurrentlyPlaying, trackName, artistAndTrack, trackUrl } = data;
   const TrackPlayStateText = isCurrentlyPlaying ? 'Currently Playing' : 'Recently Played';
   const animationPlayState = isCurrentlyPlaying ? 'running' : 'paused';
 

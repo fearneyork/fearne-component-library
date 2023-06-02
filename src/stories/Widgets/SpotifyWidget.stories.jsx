@@ -3,7 +3,10 @@ import { SpotifyWidget } from "../../Widgets/Spotify/SpotifyWidget";
 export default {
   title: 'Widgets',
   argTypes: {
-    // text: { control: 'text' },
+    isCurrentlyPlaying: { options: [true, false], control: 'boolean' },
+    trackName: { control: 'text' },
+    artistAndTrack: { control: 'text' },
+    trackUrl: { control: 'text' },
   },
 };
 
@@ -15,22 +18,20 @@ const fleetwoodMacData = {
 };
 
 const scottPilgrimData = {
-  isCurrentlyPlaying: true,
+  isCurrentlyPlaying: false,
   trackName: 'We Are Sex Bob-Omb',
   artistAndTrack: 'Scott Pilgrim Vs. The World (Original Motion Picture Soundtrack)',
   trackUrl: 'https://upload.wikimedia.org/wikipedia/en/5/59/Scott_Pilgrim_soundtrack_cover.jpg',
 };
 
 export const FleetwoodMacSpotifyWidget = {
-  args: {
-    data: {...fleetwoodMacData},
-  },
-  render: ({data}) => <SpotifyWidget data={data} />
+  render: (args) => {
+    return <SpotifyWidget {...fleetwoodMacData } {...args} />
+  }
 };
 
 export const ScottPilgrimSpotifyWidget = {
-  args: {
-    data: {...scottPilgrimData},
-  },
-  render: ({data}) => <SpotifyWidget data={data} />
+  render: (args) => {
+    return <SpotifyWidget {...scottPilgrimData } {...args} />
+  }
 };
