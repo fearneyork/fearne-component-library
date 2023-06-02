@@ -14,8 +14,8 @@ const animate = keyframes`
 const BorderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 260px;
-  height: 260px;
+  width: ${(props) => !props.isMobile ? '250px' : '350px'};
+  height: 250px;
   justify-content: center;
   align-items: center;
   border: 0px;
@@ -30,51 +30,57 @@ const ArtworkContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 250px;
-  height: 250px;
+  width: ${(props) => !props.isMobile ? '240px' : '340px'};
+  height: 240px;
   border: 0px;
   border-radius: 25px;
   opacity: 100%;
   background-image: url(${(props) => props.source});
+  background-position: center;
   background-size: cover;
   `
 
 const TrackInfoContainer = styled.div`
-  width: 233px;
-  height: 75px;
-  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  width: ${(props) => !props.isMobile ? '220px' : '320px'};
+  height: ${(props) => !props.isMobile ? '80px' : '230px'};
+  background-color: rgba(0,0,0,0.5);
   border: 0px;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-bottom: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.10);
-  justify-content: space-between;
   flex-direction: column;
+  // justify-content: flex-end;
 `
 
 const TrackPlayState = styled(Heading2)`
   font-family: helvetica;
-  font-size: 14px;
+  font-size: ${(props) => !props.isMobile ? '14px' : '18px'};
   font-weight: 500;
   padding: 5px 0px;
   opacity: 100%;
   color: rgba(0, 214, 76, 1);
   margin: 0;
   align-content: center;
-  `
-  
+
+`
+
   const TrackTitle = styled(Body)`
   font-family: helvetica;
-  font-size: 14px;
+  font-size: ${(props) => !props.isMobile ? '14px' : '18px'};
   font-weight: 500;
   padding: 3px 0px;
   opacity: 100%;
   color: rgba(255, 255, 255, 1);
-  margin: 0;
+  margin: 0px 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const TrackSubtitle = styled(Body)`
   font-family: helvetica;
-  font-size: 10px;
+  font-size: ${(props) => !props.isMobile ? '10px' : '14px'};
   font-weight: 500;
   opacity: 100%;
   color: rgb(255, 255, 255);
@@ -91,21 +97,20 @@ const IconContainer = styled.div`
   margin: 10px 10px 0px 0px;
 `
 
-export const SpotifyWidget = ({isCurrentlyPlaying, trackName, artistAndTrack, trackUrl}) => {
-  // const { isCurrentlyPlaying, trackName, artistAndTrack, trackUrl } = data;
+export const SpotifyWidget = ({isCurrentlyPlaying, trackName, artistAndTrack, trackUrl, isMobile, isLoading}) => {
   const TrackPlayStateText = isCurrentlyPlaying ? 'Currently Playing' : 'Recently Played';
   const animationPlayState = isCurrentlyPlaying ? 'running' : 'paused';
 
   return (
-    <BorderContainer animationPlayState={animationPlayState}>
-      <ArtworkContainer source={trackUrl}>
+    <BorderContainer animationPlayState={animationPlayState} isMobile={isMobile}>
+      <ArtworkContainer source={trackUrl} isMobile={isMobile}>
         <IconContainer>
-          <SpotifyIcon />
+          {!isMobile && <SpotifyIcon />}
         </IconContainer>
-        <TrackInfoContainer>
-          <TrackPlayState>{TrackPlayStateText}</TrackPlayState>
-          <TrackTitle>{trackName}</TrackTitle>
-          <TrackSubtitle numberOfLines={1}>{artistAndTrack}</TrackSubtitle>
+        <TrackInfoContainer isMobile={isMobile}>
+          <TrackPlayState isMobile={isMobile}>{TrackPlayStateText}</TrackPlayState>
+          <TrackTitle isMobile={isMobile}>{trackName}</TrackTitle>
+          <TrackSubtitle isMobile={isMobile}>{artistAndTrack}</TrackSubtitle>
         </TrackInfoContainer>
       </ArtworkContainer>
     </BorderContainer>
