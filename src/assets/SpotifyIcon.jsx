@@ -1,6 +1,6 @@
 export default () => (
     <svg width="25" height="25" viewBox="0 0 496 600" 
-        fill="rgb(10, 215, 103)" xmlns="http://www.w3.org/2000/svg"
+        fill="rgba(10,215,103,1)" xmlns="http://www.w3.org/2000/svg"
     >
         <filter id='shadow' color-interpolation-filters="sRGB">
             <feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="rgba(0, 0, 0, 0.25)" />
